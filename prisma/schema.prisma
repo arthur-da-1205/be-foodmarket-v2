@@ -1,0 +1,84 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int    @id @default(autoincrement())
+  firstName   String
+  lastName    String
+  email       String @unique
+  phoneNumber String @unique
+  role        String
+  address     String
+  houseNumber String
+  city        String
+  picturePath String
+  hash        String
+
+  createdAt DateTime @default(now())
+  updateAt  DateTime @updatedAt()
+
+  @@map("users")
+}
+
+model Food {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  rate        Float
+  price       Int
+  ingredients String
+  type        String
+  picturePath String[]
+
+  createdAt DateTime @default(now())
+  updateAt  DateTime @updatedAt()
+
+  @@map("foods")
+}
+
+model Transaction {
+  id        Int    @id @default(autoincrement())
+  userId    Int
+  foodId    Int[]
+  qty       Int
+  total     Int
+  statur    String
+  paymenUrl String
+
+  createdAt DateTime @default(now())
+  updateAt  DateTime @updatedAt()
+
+  @@map("transactions")
+}
+
+model Seller {
+  id          Int    @id @default(autoincrement())
+  firstName   String
+  lastName    String
+  email       String @unique
+  phoneNumber String @unique
+  role        String
+  address     String
+  houseNumber String
+  city        String
+  picturePath String
+
+  createdAt DateTime @default(now())
+  updateAt  DateTime @updatedAt()
+
+  @@map("sellers")
+}
+
+model ImagePath {
+  id   String @id
+  path String
+}
