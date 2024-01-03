@@ -1,23 +1,9 @@
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 
-export class UserSigninDto {
+export class UserUpdateDto {
   @IsEmail()
   @IsNotEmpty()
   email: string;
-
-  @IsString()
-  @IsNotEmpty()
-  password: string;
-}
-
-export class UserSignupDto {
-  @IsEmail()
-  @IsNotEmpty()
-  email: string;
-
-  @IsNotEmpty()
-  @IsString()
-  password: string;
 
   @IsNotEmpty()
   @IsString()
@@ -42,10 +28,6 @@ export class UserSignupDto {
   @IsNotEmpty()
   @IsString()
   city: string;
-
-  @IsNotEmpty()
-  @IsString()
-  role: string;
 
   @IsString()
   picturePath: string;
